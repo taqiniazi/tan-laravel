@@ -61,21 +61,14 @@
         .logo-container {
             margin-bottom: 2.5rem;
             animation: fadeInDown 1s ease-out;
-        }
-
-        .logo-circle {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            margin: 0 auto;
             display: flex;
             justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
-            font-weight: 700;
-            font-size: 2rem;
-            color: #000;
+        }
+
+        .logo-img {
+            max-width: 250px;
+            height: auto;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.3));
         }
 
         h1 {
@@ -188,16 +181,12 @@
     
     <div class="container">
         <div class="logo-container">
-            <div class="logo-circle">TAN</div>
+            <img src="{{ asset('logo.png') }}" alt="TAN Network Logo" class="logo-img">
         </div>
         
         <h1>Welcome to TAN Network</h1>
         <p>The next generation decentralized infrastructure for high-performance blockchain operations and automated rewards.</p>
-        
-        <!-- <div class="actions">
-            <a href="/admin" class="btn btn-primary">Go to Admin Portal</a>
-            <a href="/api/config" target="_blank" class="btn btn-secondary">View API Config</a>
-        </div> -->
+      
         
         <div class="status-badge">
             <div class="status-dot"></div>
