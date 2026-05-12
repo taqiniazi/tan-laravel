@@ -16,3 +16,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Admin Web Routes
+Route::prefix('admin')->group(function () {
+    // Auth Routes
+    Route::get('login', [\App\Http\Controllers\AdminWebController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('login', [\App\Http\Controllers\AdminWebController::class, 'login'])->name('admin.login.submit');
+    Route::post('logout', [\App\Http\Controllers\AdminWebController::class, 'logout'])->name('admin.logout');
+
+    // Protected Routes
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::get('/', [\App\Http\Controllers\AdminWebController::class, 'dashboard'])->name('admin.dashboard');
+        Route::get('users', [\App\Http\Controllers\AdminWebController::class, 'users'])->name('admin.users');
+        Route::post('users/{id}/flag', [\App\Http\Controllers\AdminWebController::class, 'toggleFlag'])->name('admin.users.flag');
+        Route::post('users/{id}/role', [\App\Http\Controllers\AdminWebController::class, 'toggleRole'])->name('admin.users.role');
+        
+        Route::get('withdrawals', [\App\Http\Controllers\AdminWebController::class, 'withdrawals'])->name('admin.withdrawals');
+        Route::post('withdrawals/approve', [\App\Http\Controllers\AdminWebController::class, 'approveWithdrawal'])->name('admin.withdrawals.approve');
+        Route::post('withdrawals/reject', [\App\Http\Controllers\AdminWebController::class, 'rejectWithdrawal'])->name('admin.withdrawals.reject');
+        
+        Route::get('config', [\App\Http\Controllers\AdminWebController::class, 'config'])->name('admin.config');
+        Route::post('config', [\App\Http\Controllers\AdminWebController::class, 'updateConfig'])->name('admin.config.update');
+    });
+});
