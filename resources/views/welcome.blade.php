@@ -67,6 +67,7 @@
 
         .logo-img {
             max-width: 250px;
+            width:100%;
             height: auto;
             filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.3));
         }
