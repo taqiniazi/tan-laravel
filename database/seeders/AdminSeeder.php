@@ -15,7 +15,7 @@ class AdminSeeder extends Seeder
         \App\Models\User::create([
             'name' => 'Admin',
             'email' => 'admin@tannetwork.online',
-            'password' => \Illuminate\Support\Facades\Hash::make('admin123'),
+            'password' => \Illuminate\Support\Facades\Hash::make('ManuKhan@1122'),
             'role' => 'admin',
             'referral_code' => 'ADMIN1',
         ]);
