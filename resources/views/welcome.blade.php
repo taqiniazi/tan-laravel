@@ -194,10 +194,10 @@
         <h1>Welcome to TAN Network</h1>
         <p>The next generation decentralized infrastructure for high-performance blockchain operations and automated rewards.</p>
         
-        <div class="actions">
+        <!-- <div class="actions">
             <a href="/admin" class="btn btn-primary">Go to Admin Portal</a>
             <a href="/api/config" target="_blank" class="btn btn-secondary">View API Config</a>
-        </div>
+        </div> -->
         
         <div class="status-badge">
             <div class="status-dot"></div>
