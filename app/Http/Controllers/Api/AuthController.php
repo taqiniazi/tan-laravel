@@ -31,7 +31,7 @@ class AuthController extends Controller
             'country' => $request->country,
             'city' => $request->city,
             'referral_code' => Str::random(6),
-            'referred_by' => $request->referred_by ?: ($request->referralCode ?: '1f91b1'),
+            'referred_by' => $request->referred_by ?: ($request->referralCode ?: ($request->referredBy ?: '1f91b1')),
             'device_id' => $request->deviceId,
             'ip_address' => $request->ip(),
         ]);

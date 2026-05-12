@@ -31,4 +31,17 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'bscscan' => [
+        'api_key' => env('BSC_API_KEY'),
+    ],
+
+    'etherscan' => [
+        'api_key' => env('ETH_API_KEY'),
+    ],
+
+    'payments' => [
+        'address_evm' => env('PAYMENT_ADDRESS_EVM'),
+        'address_sol' => env('PAYMENT_ADDRESS_SOL'),
+    ],
+
 ];
