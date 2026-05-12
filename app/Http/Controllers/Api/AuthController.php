@@ -46,9 +46,12 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        \Illuminate\Support\Facades\Log::info('Login attempt:', ['email' => $request->email]);
+        
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
+            \Illuminate\Support\Facades\Log::warning('Login failed for email: ' . $request->email);
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
 
