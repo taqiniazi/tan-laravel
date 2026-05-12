@@ -1,6 +1,8 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    RewriteBase /tan-laravel/
     
-    # Redirect everything to the public directory
+    # Redirect all requests to the public/ directory
+    RewriteCond %{REQUEST_URI} !^/tan-laravel/public/
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
