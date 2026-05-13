@@ -96,6 +96,40 @@ class AdminWebController extends Controller
         return back()->with('success', 'User role updated successfully.');
     }
 
+    public function togglePremium($id)
+    {
+        $user = User::findOrFail($id);
+        $user->is_premium = !$user->is_premium;
+        $user->save();
+        return back()->with('success', 'User premium status updated successfully.');
+    }
+
+    public function editUser($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.users_edit', compact('user'));
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'balance' => 'required|numeric|min:0',
+        ]);
+
+        $user->update($request->only(['name', 'email', 'balance']));
+        return redirect()->route('admin.users')->with('success', 'User updated successfully.');
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return back()->with('success', 'User deleted successfully.');
+    }
+
     // --- Withdrawals ---
     public function withdrawals()
     {

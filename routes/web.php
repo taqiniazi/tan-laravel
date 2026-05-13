@@ -30,6 +30,10 @@ Route::prefix('admin')->group(function () {
         Route::get('users', [\App\Http\Controllers\AdminWebController::class, 'users'])->name('admin.users');
         Route::post('users/{id}/flag', [\App\Http\Controllers\AdminWebController::class, 'toggleFlag'])->name('admin.users.flag');
         Route::post('users/{id}/role', [\App\Http\Controllers\AdminWebController::class, 'toggleRole'])->name('admin.users.role');
+        Route::post('users/{id}/premium', [\App\Http\Controllers\AdminWebController::class, 'togglePremium'])->name('admin.users.premium');
+        Route::get('users/{id}/edit', [\App\Http\Controllers\AdminWebController::class, 'editUser'])->name('admin.users.edit');
+        Route::post('users/{id}/update', [\App\Http\Controllers\AdminWebController::class, 'updateUser'])->name('admin.users.update');
+        Route::delete('users/{id}', [\App\Http\Controllers\AdminWebController::class, 'deleteUser'])->name('admin.users.delete');
         
         Route::get('withdrawals', [\App\Http\Controllers\AdminWebController::class, 'withdrawals'])->name('admin.withdrawals');
         Route::post('withdrawals/approve', [\App\Http\Controllers\AdminWebController::class, 'approveWithdrawal'])->name('admin.withdrawals.approve');

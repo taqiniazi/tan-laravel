@@ -11,6 +11,7 @@ class Config extends Model
 
     protected $fillable = [
         'mining_rate',
+        'premium_mining_rate',
         'min_withdrawal',
         'max_withdrawal',
         'referral_bonus',
