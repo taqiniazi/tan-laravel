@@ -15,6 +15,9 @@ class LeaderboardController extends Controller
             ->limit(10)
             ->get(['id', 'name', 'balance', 'country', 'profile_image']);
 
-        return response()->json($topUsers);
+        return response()->json([
+            'success' => true,
+            'data' => $topUsers
+        ]);
     }
 }
