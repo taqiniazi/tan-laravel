@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Models\User;
 use App\Services\BlockchainService;
 use Illuminate\Support\Facades\Log;
+use App\Notifications\PremiumSubscriptionNotification;
 
 class PaymentController extends Controller
 {
@@ -84,6 +85,8 @@ class PaymentController extends Controller
             'mining_rate' => 1.0, // Premium rate
             'premium_expiry' => now()->addYear()
         ]);
+
+        $user->notify(new PremiumSubscriptionNotification('renewed', $user->premium_expiry->toFormattedDateString()));
 
         Log::info("User {$userId} upgraded to Premium via {$network} transaction {$txHash}");
 

@@ -21,6 +21,14 @@ class ProfileController extends Controller
             $user->referral_code = strtoupper(Str::random(6));
             $user->save();
         }
+
+        // Real-time premium expiry check
+        if ($user->is_premium && $user->premium_expiry && $user->premium_expiry->isPast()) {
+            $user->update([
+                'is_premium' => false,
+                'mining_rate' => 0.01,
+            ]);
+        }
         
         return response()->json($user);
     }

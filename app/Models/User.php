@@ -67,5 +67,24 @@ class User extends Authenticatable
         'is_mining_active' => 'boolean',
         'is_premium' => 'boolean',
         'is_flagged' => 'boolean',
+        'premium_expiry' => 'datetime',
     ];
+
+    /**
+     * Check if the user has an active premium subscription.
+     *
+     * @return bool
+     */
+    public function hasActivePremium()
+    {
+        if (!$this->is_premium) {
+            return false;
+        }
+
+        if ($this->premium_expiry && $this->premium_expiry->isPast()) {
+            return false;
+        }
+
+        return true;
+    }
 }
