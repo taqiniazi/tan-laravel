@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/reset-password/{token}', [\App\Http\Controllers\PasswordResetController::class, 'edit'])
+    ->name('password.reset');
+Route::post('/reset-password', [\App\Http\Controllers\PasswordResetController::class, 'update'])
+    ->name('password.update');
+
 // Admin Web Routes
 Route::prefix('admin')->group(function () {
     // Auth Routes

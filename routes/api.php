@@ -29,6 +29,8 @@ Route::post('/auth/signup', [AuthController::class, 'signup']);
 Route::post('/signup', [AuthController::class, 'signup']); // Match Flutter app
 Route::post('/auth/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'login']); // Match React & Flutter app
+Route::post('/forgot-password', [AuthController::class, 'sendResetLink']);
+Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 Route::get('/config', [ConfigController::class, 'getConfig']);
 
 Route::middleware('auth:sanctum')->group(function () {
