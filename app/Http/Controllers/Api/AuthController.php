@@ -75,7 +75,17 @@ class AuthController extends Controller
             'email' => 'required|email',
         ]);
 
-        Password::sendResetLink($request->only('email'));
+        try {
+            Password::sendResetLink($request->only('email'));
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Password reset email failed: ' . $e->getMessage(), [
+                'email' => $request->email,
+                'trace' => $e->getTraceAsString()
+            ]);
+            return response()->json([
+                'error' => 'Failed to send password reset email. Please verify your email settings or try again later.',
+            ], 500);
+        }
 
         return response()->json([
             'message' => 'If an account exists for that email, a password reset link has been sent.',
