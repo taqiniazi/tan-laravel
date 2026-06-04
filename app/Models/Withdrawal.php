@@ -20,6 +20,7 @@ class Withdrawal extends Model
     ];
 
     protected $casts = [
+        'amount' => 'float',
         'processed_at' => 'datetime',
     ];
 

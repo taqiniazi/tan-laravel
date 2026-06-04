@@ -22,4 +22,14 @@ class Config extends Model
         'min_app_version',
         'app_update_url',
     ];
+
+    protected $casts = [
+        'mining_rate' => 'float',
+        'premium_mining_rate' => 'float',
+        'min_withdrawal' => 'float',
+        'max_withdrawal' => 'float',
+        'referral_bonus' => 'float',
+        'premium_fee' => 'float',
+        'maintenance_mode' => 'boolean',
+    ];
 }

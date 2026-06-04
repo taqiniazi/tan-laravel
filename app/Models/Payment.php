@@ -19,6 +19,7 @@ class Payment extends Model
     ];
 
     protected $casts = [
+        'amount' => 'float',
         'verified_at' => 'datetime',
     ];
 

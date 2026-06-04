@@ -18,6 +18,7 @@ class Transaction extends Model
     ];
 
     protected $casts = [
+        'amount' => 'float',
         'metadata' => 'json',
     ];
 
