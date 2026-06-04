@@ -117,9 +117,18 @@ class AdminWebController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
             'balance' => 'required|numeric|min:0',
+            'password' => 'nullable|string|min:6',
+            'role' => 'required|string|in:user,admin',
+            'is_premium' => 'required|boolean',
         ]);
 
-        $user->update($request->only(['name', 'email', 'balance']));
+        $userData = $request->only(['name', 'email', 'balance', 'role', 'is_premium']);
+
+        if ($request->filled('password')) {
+            $userData['password'] = \Illuminate\Support\Facades\Hash::make($request->password);
+        }
+
+        $user->update($userData);
         return redirect()->route('admin.users')->with('success', 'User updated successfully.');
     }
 

@@ -29,7 +29,7 @@
                         </div>
                     </div>
 
-                    <div class="row mb-5">
+                    <div class="row mb-4">
                         <div class="col-md-6">
                             <label for="balance" class="form-label text-dim small fw-600">CURRENT BALANCE (TAN)</label>
                             <div class="input-group">
@@ -37,18 +37,31 @@
                                 <span class="input-group-text bg-light bg-opacity-5 border-0 text-dim">TAN</span>
                             </div>
                         </div>
-                        <!-- <div class="col-md-6 d-flex align-items-end">
-                             <div class="alert alert-primary py-3 px-4 mb-0 w-100 bg-primary bg-opacity-5 border-0 rounded-4">
-                                <div class="d-flex align-items-center gap-3">
-                                    <i class="bi bi-info-circle-fill text-primary fs-4"></i>
-                                    <small class="text-dim">Role, Status, and Premium status can be managed directly from the user list actions.</small>
-                                </div>
-                             </div>
-                        </div> -->
+                        <div class="col-md-6">
+                            <label for="password" class="form-label text-dim small fw-600">NEW PASSWORD (LEAVE BLANK TO KEEP CURRENT)</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter new password">
+                        </div>
+                    </div>
+
+                    <div class="row mb-5">
+                        <div class="col-md-6">
+                            <label for="role" class="form-label text-dim small fw-600">USER ROLE</label>
+                            <select class="form-select form-control" id="role" name="role" required>
+                                <option value="user" {{ old('role', $user->role) === 'user' ? 'selected' : '' }}>User</option>
+                                <option value="admin" {{ old('role', $user->role) === 'admin' ? 'selected' : '' }}>Admin</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="is_premium" class="form-label text-dim small fw-600">STATUS (NORMAL/PREMIUM)</label>
+                            <select class="form-select form-control" id="is_premium" name="is_premium" required>
+                                <option value="0" {{ old('is_premium', $user->is_premium) ? '' : 'selected' }}>Normal</option>
+                                <option value="1" {{ old('is_premium', $user->is_premium) ? 'selected' : '' }}>Premium</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="d-flex justify-content-end gap-3 pt-3 border-top border-white border-opacity-5">
-                        <a href="{{ route('admin.users') }}" class="btn btn-outline-light border-0 bg-light text-dark bg-opacity-5">Canel</a>
+                        <a href="{{ route('admin.users') }}" class="btn btn-outline-light border-0 bg-light text-dark bg-opacity-5">Cancel</a>
                         <button type="submit" class="btn btn-primary px-5">Save Changes</button>
                     </div>
                 </form>
