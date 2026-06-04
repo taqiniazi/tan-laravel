@@ -64,7 +64,7 @@
     <div class="login-card">
         <div class="brand">
             <h2>TAN Admin</h2>
-            <p class="text-secondary">Login to manage TAN Network</p>
+            <p class="text-secondary">Login tasdfasdfo manage TAN Network</p>
         </div>
 
         @if($errors->any())
