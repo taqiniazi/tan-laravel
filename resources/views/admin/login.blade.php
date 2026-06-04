@@ -79,6 +79,7 @@
                 <label class="form-label text-secondary">Email Address</label>
                 <input type="email" name="email" class="form-control" value="{{ old('email') }}" required autofocus>
             </div>
+            <br>
             <div class="mb-3">
                 <label class="form-label text-secondary">Password</label>
                 <input type="password" name="password" class="form-control" required>
