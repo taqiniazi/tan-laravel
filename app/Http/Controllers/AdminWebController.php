@@ -192,13 +192,29 @@ class AdminWebController extends Controller
 
     public function updateConfig(Request $request)
     {
+        $request->validate([
+            'mining_rate' => 'required|numeric|min:0',
+            'premium_mining_rate' => 'required|numeric|min:0',
+            'referral_bonus' => 'required|numeric|min:0',
+            'premium_referral_bonus' => 'required|numeric|min:0',
+            'min_withdrawal' => 'required|numeric|min:0',
+            'max_withdrawal' => 'required|numeric|min:0',
+            'min_app_version' => 'required|string',
+            'app_update_url' => 'required|url',
+        ]);
+
         $config = Config::first();
         if (!$config) {
             $config = new Config();
         }
 
-        $config->fill($request->all());
+        $config->fill($request->except('maintenance_mode'));
+        $config->maintenance_mode = $request->has('maintenance_mode');
         $config->save();
+
+        // Propagate the updated mining rates to all users
+        User::where('is_premium', false)->update(['mining_rate' => $config->mining_rate]);
+        User::where('is_premium', true)->update(['mining_rate' => $config->premium_mining_rate]);
 
         return back()->with('success', 'Configuration updated successfully.');
     }

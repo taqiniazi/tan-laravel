@@ -39,6 +39,13 @@
                                 <span class="input-group-text bg-light bg-opacity-5 border-0 text-dim small">%</span>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-dim small fw-600">PREMIUM REFERRAL BONUS (%)</label>
+                            <div class="input-group">
+                                <input type="number" step="0.1" name="premium_referral_bonus" class="form-control" value="{{ $config->premium_referral_bonus }}" required>
+                                <span class="input-group-text bg-light bg-opacity-5 border-0 text-dim small">%</span>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="d-flex align-items-center gap-3 mb-4 mt-5">

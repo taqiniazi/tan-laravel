@@ -35,10 +35,13 @@ class CheckExpiredPremium extends Command
             ->where('premium_expiry', '<', $now)
             ->get();
 
+        $config = \App\Models\Config::first();
+        $baseMiningRate = $config ? $config->mining_rate : 0.01;
+
         foreach ($expiredUsers as $user) {
             $user->update([
                 'is_premium' => false,
-                'mining_rate' => 0.01, // Reset to standard rate
+                'mining_rate' => $baseMiningRate,
             ]);
 
             $user->notify(new PremiumSubscriptionNotification('expired'));

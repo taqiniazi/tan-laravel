@@ -80,9 +80,12 @@ class PaymentController extends Controller
 
         // 5. Upgrade User to Premium
         $user = $request->user();
+        $config = \App\Models\Config::first();
+        $premiumMiningRate = $config ? $config->premium_mining_rate : 0.02;
+
         $user->update([
             'is_premium' => true,
-            'mining_rate' => 1.0, // Premium rate
+            'mining_rate' => $premiumMiningRate,
             'premium_expiry' => now()->addYear()
         ]);
 

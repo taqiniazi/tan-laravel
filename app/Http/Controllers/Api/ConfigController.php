@@ -17,9 +17,11 @@ class ConfigController extends Controller
             // Seed default config if not exists
             $config = Config::create([
                 'mining_rate' => 0.01,
+                'premium_mining_rate' => 0.02,
                 'min_withdrawal' => 10,
                 'max_withdrawal' => 1000,
                 'referral_bonus' => 10,
+                'premium_referral_bonus' => 20,
                 'maintenance_mode' => false,
                 'min_app_version' => '1.0.0',
                 'app_update_url' => 'https://tannetwork.online'

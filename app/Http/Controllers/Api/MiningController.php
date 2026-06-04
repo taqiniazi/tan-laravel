@@ -78,11 +78,18 @@ class MiningController extends Controller
                 ]
             ]);
 
-            // Referral commission distribution logic (Simplified)
+            // Referral commission distribution logic
             if ($user->referred_by) {
                 $referrer = User::where('referral_code', $user->referred_by)->first();
                 if ($referrer) {
-                    $commission = round($earned * 0.1, 8); // 10% commission
+                    $config = \App\Models\Config::first();
+                    $referralBonus = 10.0;
+                    if ($config) {
+                        $referralBonus = $referrer->is_premium 
+                            ? ($config->premium_referral_bonus ?? 20.0) 
+                            : ($config->referral_bonus ?? 10.0);
+                    }
+                    $commission = round($earned * ($referralBonus / 100), 8);
                     $referrer->increment('balance', $commission);
                     $referrer->increment('referral_earnings', $commission);
                     

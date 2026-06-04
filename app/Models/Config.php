@@ -15,6 +15,7 @@ class Config extends Model
         'min_withdrawal',
         'max_withdrawal',
         'referral_bonus',
+        'premium_referral_bonus',
         'maintenance_mode',
         'payment_address_evm',
         'payment_address_sol',
@@ -29,6 +30,7 @@ class Config extends Model
         'min_withdrawal' => 'float',
         'max_withdrawal' => 'float',
         'referral_bonus' => 'float',
+        'premium_referral_bonus' => 'float',
         'premium_fee' => 'float',
         'maintenance_mode' => 'boolean',
     ];
