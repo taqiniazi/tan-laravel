@@ -94,29 +94,33 @@
 
         @if (session('status'))
             <div class="status">{{ session('status') }}</div>
-        @endif
-
-        @if ($errors->any())
-            <div class="error">
-                {{ $errors->first() }}
+            <div class="success-actions" style="margin-top: 24px; text-align: center;">
+                <p style="color: #86efac; font-weight: bold; font-size: 18px; margin-bottom: 8px;">✓ Password Updated</p>
+                <p style="color: #9fb2d8; font-size: 14px; margin-bottom: 24px;">Your password has been successfully reset. You can now close this tab and return to the App to sign in.</p>
             </div>
+        @else
+            @if ($errors->any())
+                <div class="error">
+                    {{ $errors->first() }}
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('password.update') }}">
+                @csrf
+                <input type="hidden" name="token" value="{{ $token }}">
+
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email" value="{{ old('email', $email) }}" required>
+
+                <label for="password">New Password</label>
+                <input id="password" type="password" name="password" required minlength="6">
+
+                <label for="password_confirmation">Confirm New Password</label>
+                <input id="password_confirmation" type="password" name="password_confirmation" required minlength="6">
+
+                <button type="submit">Update Password</button>
+            </form>
         @endif
-
-        <form method="POST" action="{{ route('password.update') }}">
-            @csrf
-            <input type="hidden" name="token" value="{{ $token }}">
-
-            <label for="email">Email</label>
-            <input id="email" type="email" name="email" value="{{ old('email', $email) }}" required>
-
-            <label for="password">New Password</label>
-            <input id="password" type="password" name="password" required minlength="6">
-
-            <label for="password_confirmation">Confirm New Password</label>
-            <input id="password_confirmation" type="password" name="password_confirmation" required minlength="6">
-
-            <button type="submit">Update Password</button>
-        </form>
 
         <div class="hint">After updating, return to the app and sign in again.</div>
     </div>

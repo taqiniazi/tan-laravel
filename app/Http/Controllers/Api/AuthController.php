@@ -83,7 +83,7 @@ class AuthController extends Controller
                 'trace' => $e->getTraceAsString()
             ]);
             return response()->json([
-                'error' => 'Failed to send password reset email. Please verify your email settings or try again later.',
+                'error' => 'Failed to send password reset email: ' . $e->getMessage(),
             ], 500);
         }
 
