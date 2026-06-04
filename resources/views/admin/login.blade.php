@@ -64,7 +64,7 @@
     <div class="login-card">
         <div class="brand">
             <h2>TAN Admin</h2>
-            <p class="text-secondary">Login tasdfasdfo manage TAN Network</p>
+            <p class="text-secondary">Login to manage TAN Network</p>
         </div>
 
         @if($errors->any())
@@ -79,7 +79,6 @@
                 <label class="form-label text-secondary">Email Address</label>
                 <input type="email" name="email" class="form-control" value="{{ old('email') }}" required autofocus>
             </div>
-            <br>
             <div class="mb-3">
                 <label class="form-label text-secondary">Password</label>
                 <input type="password" name="password" class="form-control" required>
